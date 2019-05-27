@@ -25,7 +25,7 @@
         
 -- Thêm trong thẻ build của maven
 
-<build>
+       <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
