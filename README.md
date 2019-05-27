@@ -7,11 +7,11 @@
 
 ### Thực Hành
 #### Chuẩn bị
-1. Giải thích source code
--- Giải thích file maven pom <br>
--- Giải thích database properties <br>
--- Giải thích folder liquibase và các changeset <br>
--- Giải thích lệnh chạy với maven <br>
+1. Giải thích source code <br>
++ Giải thích file maven pom <br>
++ Giải thích database properties <br>
++ Giải thích folder liquibase và các changeset <br>
++ Giải thích lệnh chạy với maven <br>
 2. Tạo database library (xem ví dụ mẫu tại file database)
 3. Download source code về với các chú ý sau
 - File pom
