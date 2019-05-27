@@ -9,4 +9,15 @@
 #### Chuẩn bị
 1. Tạo database library (xem ví dụ mẫu tại file database)
 2. Download source code về với các chú ý sau
-2.1 File po
+- File pom
+-- Thêm 2 thư viện sau vào
+         <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.4.1</version>
+        </dependency>
