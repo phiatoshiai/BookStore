@@ -11,7 +11,8 @@
 2. Download source code về với các chú ý sau
 - File pom
 -- Thêm 2 thư viện sau vào
-         <dependency>
+        
+        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
