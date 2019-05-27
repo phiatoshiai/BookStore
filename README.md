@@ -6,3 +6,7 @@
 4. Chi tiết về liquibase tại đây https://www.liquibase.org/
 
 ### Thực Hành
+#### Chuẩn bị
+1. Tạo database library (xem ví dụ mẫu tại file database)
+2. Download source code về với các chú ý sau
+2.1 File po
