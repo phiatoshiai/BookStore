@@ -59,15 +59,16 @@
     </build>
  
  - Chạy ứng dụng . Chúng ta chạy lênh mvn clean install <br>
- -- Khi chúng ta dùng lẹnh mvn clean install thì mình sẽ trigger các câu lệnh trong phần <build> lúc đó liquibase sẽ chạy và sinh ra các table tương ứng để chúng ta kiểm soát version của database đồng thời các sự thay đổi trong db
+Khi chúng ta dùng lệnh mvn clean install  <br> 
+Thì mình sẽ trigger các câu lệnh trong thẻ build, lúc đó liquibase sẽ chạy và sinh ra các table tương ứng để chúng ta kiểm soát version của database đồng thời các sự thay đổi trong db
         
---- Liquibase hỗ trợ các chức năng sau
----- Update
----- Rollback
----- Diff
----- SQL Output
----- DBDoc
+--- Liquibase hỗ trợ các chức năng sau <br>
+---- Update  <br>
+---- Rollback  <br>
+---- Diff  <br>
+---- SQL Output  <br>
+---- DBDoc <br>
 
-Tham khảo thêm tại
+Tham khảo thêm tại <br>
 https://www.liquibase.org/documentation/index.html
   
