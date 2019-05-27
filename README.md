@@ -1,4 +1,8 @@
 # Lý Thuyết
-### Tại sao phải sử dụng Liquidbase
+### Tại sao phải sử dụng Liquibase
+1. Theo dõi sự thay dổi của database ai làm gì ? ai thêm gì
+2. Đồng nhất version của database với version của code khi release lên môi trường Production
+3. Cung cấp những công cụ cần thiết để tương tác với database như so sánh các database với nhau
+4. Chi tiết về liquibase tại đây https://www.liquibase.org/
 
-# Thực Hành
+### Thực Hành
