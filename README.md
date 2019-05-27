@@ -58,7 +58,7 @@
         </plugins>
     </build>
  
- - Chạy ứng dụng . Chúng ta chạy lênh mvn clean install
+ - Chạy ứng dụng . Chúng ta chạy lênh mvn clean install <br>
  -- Khi chúng ta dùng lẹnh mvn clean install thì mình sẽ trigger các câu lệnh trong phần <build> lúc đó liquibase sẽ chạy và sinh ra các table tương ứng để chúng ta kiểm soát version của database đồng thời các sự thay đổi trong db
         
 --- Liquibase hỗ trợ các chức năng sau
