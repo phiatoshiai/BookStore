@@ -4,6 +4,7 @@
 2. Đồng nhất version của database với version của code khi release lên môi trường Production
 3. Cung cấp những công cụ cần thiết để tương tác với database như so sánh các database với nhau
 4. Chi tiết về liquibase tại đây https://www.liquibase.org/
+5. Chi tiết các câu query https://www.liquibase.org/documentation/changes/add_default_value.html 
 
 ### Thực Hành
 #### Chuẩn bị
