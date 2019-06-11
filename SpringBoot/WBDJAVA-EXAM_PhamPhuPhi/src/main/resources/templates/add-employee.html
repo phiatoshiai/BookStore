@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>QUẢN LÍ SÁCH</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a href="#" class="btn btn-danger">+ Thêm mới</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" th:action="@{/search}" method="post">
+                <input class="form-control mr-sm-2" name="searchName" type="text" placeholder="Nhập nội dung tìm kiếm"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i>Tìm Kiếm
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    </br>
+    <h1 class="mt-5 text-info">Thêm mới nhân viên</h1>
+</main>
+<div class="container">
+    <form th:object="${newEmployee}" action="/saveEmployee" method="post">
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <label>Mã nhân viên</label>
+                    <input type="text" th:field="*{id}" class="form-control" placeholder="Mã nhân viên"/>
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></a>
+
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <div>
+                    <label>Chọn nhóm nhân viên</label>
+                    <div>
+                        <select th:field="*{groupemp}">
+                            <option value="Lễ tân">Lễ tân</option>
+                            <option value="Quản trị hệ thống"> Quản trị hệ thống</option>
+                            <option value="Quản lí nhân sự"> Quản lí nhân sự</option>
+                            <option value="Quản lí phòng"> Quản lí phòng</option>
+                            <option value="Quản lí dịch vụ"> Quản lí dịch vụ</option>
+                        </select>
+                    </div>
+                    <a class="text-danger" th:if="${#fields.hasErrors('groupemp')}" th:errors="*{groupemp}"></a>
+
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <div>
+                    <label>Họ tên</label>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Họ tên" required
+                           oninvalid="this.setCustomValidity('Vui lòng nhập tên')"
+                           oninput="this.setCustomValidity('')"/>
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></a>
+
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <div>
+                    <label>Ngày sinh</label>
+                    <input type="text" th:field="*{date}" class="form-control"
+                           placeholder="Ngày sinh tháng/ngày/năm vd: 05/02/1993"/>
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></a>
+
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <label>Giới tính</label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" checked value="Nam" th:field="*{sex}">Nam
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" value="Nữ" th:field="*{sex}">Nữ
+                </label>
+
+                <a class="text-danger" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></a>
+
+            </div>
+
+            <div class="col-6">
+                <div>
+                    <label>Số điện thoại</label>
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="Số điện thoại"/>
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></a>
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <div>
+                    <label>Số CMND</label>
+                    <input type="text" th:field="*{idCard}" class="form-control" placeholder="Số CMND"/>
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></a>
+                <div style="clear: both; display: block; height: 10px"></div>
+
+
+                <div>
+                    <label>Email</label>
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="Email">
+                </div>
+                <a class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></a>
+                <div style="clear: both; display: block; height: 10px"></div>
+
+                <div>
+                    <label>Địa chỉ</label>
+                    <input type="text" th:field="*{address}" class="form-control" placeholder="Địa chỉ"/>
+                    <a class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></a>
+
+                </div>
+            </div>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <input type="submit" class="btn btn-success" value="Thêm nhân viên"/>
+        <a href="/home" class="btn btn-danger">Hủy</a>
+    </form>
+</div>
+</body>
+</html>

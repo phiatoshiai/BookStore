@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>QUẢN LÍ SÁCH</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a href="/addEmployee" class="btn btn-danger">+ Thêm mới</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" th:action="@{/search}" method="post">
+                <input class="form-control mr-sm-2" name="searchName" type="text" placeholder="Nhập nội dung tìm kiếm"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i>Tìm Kiếm
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    </br>
+    <h5 class="mt-5 text-info"><i class="fa fa-list"></i> Danh sách nhân viên</h5>
+</main>
+<div class="container">
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Mã nhân viên</th>
+                <th>Nhóm nhân viên</th>
+                <th>Họ tên</th>
+                <th>Giới tính</th>
+                <th>Số điện thoại</th>
+                <th>Chức năng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employeeList}">
+                <td th:text="${employee.getId()}"></td>
+
+                <td th:text="${employee.getGroupemp()}"></td>
+
+                <td th:text="${employee.getName()}"></td>
+
+                <td th:text="${employee.getSex()}"></td>
+
+                <td th:text="${employee.getPhone()}"></td>
+
+                <td>
+                    <a th:href="@{/editEmployee(id=${employee.getId()})}" class="btn btn-outline-primary">
+                        <i class="fa fa-edit" aria-hidden="true"></i></a>
+
+                    <a th:href="@{/deleteEmployee(id=${employee.getId()})}" class="btn btn-outline-primary"
+                       onclick="return confirm('Bạn muốn xóa nhân viên này?')">
+                        <i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination">
+                <li th:each="page:${pageList}" class="page-item">
+                    <a th:href="@{'/page/'+${page}}" th:text="${page}" class="page-link"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
