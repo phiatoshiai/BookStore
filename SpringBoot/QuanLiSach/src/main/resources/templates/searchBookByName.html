@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>QUẢN LÍ SÁCH</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">SÁCH</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/1}">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addBook}">Thêm Sách</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addAuthor}">Thêm Tác Giả</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" th:action="@{/search}" method="post">
+                <input class="form-control mr-sm-2" name="searchName" type="text" placeholder="Tìm kiếm sách" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Kiếm</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    </br>
+    <h1 class="mt-5 text-info" align="middle">Tìm kiếm sách</h1>
+    <h2 class="mt-5 text-info" align="middle"><a th:text="${searchName}"></a></h2>
+</main>
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Sách</th>
+                <th>Năm Xuất Bản</th>
+                <th>Tác giả</th>
+                <th>Thể loại</th>
+                <th>Giá tiền</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book: ${bookSearch}">
+                <td th:text="${book.getId()}"></td>
+                <td >
+                    <a th:href="@{'/cart/'+${book.getId()}}" th:text="${book.getName()}"></a>
+                </td>
+                <td th:text="${book.getYear()}"></td>
+                <td th:each="author : ${book.getAuthorList()}">
+                    <div th:text="${author.getName()}"></div>
+                </td>
+                <td th:each="categorySearch : ${book.getCategory()}">
+                    <div th:text="${categorySearch.getName()}"></div>
+                </td>
+                <td th:text="${book.getPrice()}"></td>
+                <td>
+                    <a th:href="@{/editBook(id=${book.getId()})}" class="btn btn-outline-primary">
+                        <i class="fa fa-edit" aria-hidden="true"></i></a>
+                </td>
+                <td>
+                    <a th:href="@{/deleteBook(id=${book.getId()})}" class="btn btn-outline-primary"
+                       onclick="return confirm('Bạn muốn xóa sản phẩm này?')">
+                        <i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination">
+                <li class="page-item">
+                    <a th:href="@{'/1'}" class="page-link">Trở về trang chủ</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

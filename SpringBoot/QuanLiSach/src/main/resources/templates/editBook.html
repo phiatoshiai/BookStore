@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>QUẢN LÍ SÁCH</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        td {
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/1}">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addBook}">Thêm Sách</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addAuthor}">Thêm Tác Giả</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0" th:action="@{/search}" method="post">
+                <input class="form-control mr-sm-2" name="searchName" type="text" placeholder="Tìm kiếm sách"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Kiếm</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="container">
+    </br>
+    <h1 class="mt-5 text-info" align="middle">Chỉnh sửa thông tin sách</h1>
+</main>
+<div class="container col-6">
+    <div class="col-md-auto">
+        <form th:object="${book}" action="/saveEditBook" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <label>Tên</label>
+                <input type="text" th:field="*{name}" class="form-control" placeholder="Tên"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                <span class="text-danger" th:text="${message}"></span>
+            </div>
+
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label>Năm xuất bản</label>
+                <input type="text" th:field="*{year}" class="form-control" placeholder="Năm xuất bản"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label>Giá tiền</label>
+                <input type="text" th:field="*{price}" class="form-control" placeholder="Giá tiền"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <th class="align-center">Tác giả</th>
+                        <div th:each="author : ${authorEdit}">
+                            <input type="checkbox" th:value="${author.getId()}" th:field="*{authorList}">
+                            <label th:text="${author.getName()}"></label>
+                        </div>
+                        <div>
+                            <a href="/addCategory" methods="get">Thêm thể loại sách</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <th class="align-center">Thể loại</th>
+                            <div th:each="category : ${categoryEdit}">
+                                <input type="checkbox" th:value="${category.getId()}" th:field="*{category}">
+                                <label th:text="${category.getName()}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <input type="submit" class="btn btn-success" value="Save"/>
+            <a href="/1" class="btn btn-danger">Hủy</a>
+        </form>
+    </div>
+</div>
+<div class="jumbotron text-center" style="margin-bottom:0">@Phi-C0219H1-CodeGym</div>
+</body>
+</html>
