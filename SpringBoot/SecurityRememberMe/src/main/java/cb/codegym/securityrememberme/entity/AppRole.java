@@ -1,9 +1,7 @@
 package cb.codegym.securityrememberme.entity;
 
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -13,24 +11,35 @@ public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id", nullable = false)
-    private Long role_id;
+    private Long roleId;
 
     @Column(name = "role_name", length = 30, nullable = false)
-    private String role_name;
+    private String roleName;
 
-    public Long getRole_id() {
-        return role_id;
+    @ManyToMany(mappedBy = "roleSet")
+    private Set<AppUser> userSet;
+
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(long role_id) {
-        this.role_id = role_id;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
-    public String getRole_name() {
-        return role_name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public Set<AppUser> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<AppUser> userSet) {
+        this.userSet = userSet;
     }
 }

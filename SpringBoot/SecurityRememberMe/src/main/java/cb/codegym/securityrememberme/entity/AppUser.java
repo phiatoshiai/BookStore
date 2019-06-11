@@ -9,39 +9,53 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "user_name", length = 36, nullable = false)
-    private String user_name;
+    private String userName;
 
     @Column(name = "encryted_password", length = 128, nullable = false)
-    private String encryted_password;
+    private String encrytedPassword;
 
     @Column(name = "enable", length = 1, nullable = false)
     private boolean enable;
 
-    public Long getUser_id() {
-        return user_id;
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<AppRole> roleSet;
+
+    public Set<AppRole> getRoleSet() {
+        return roleSet;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setRoleSet(Set<AppRole> roleSet) {
+        this.roleSet = roleSet;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getEncryted_password() {
-        return encryted_password;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEncryted_password(String encryted_password) {
-        this.encryted_password = encryted_password;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEncrytedPassword() {
+        return encrytedPassword;
+    }
+
+    public void setEncrytedPassword(String encrytedPassword) {
+        this.encrytedPassword = encrytedPassword;
     }
 
     public boolean isEnable() {
